@@ -1,5 +1,5 @@
 # productor_consumidor
-Mi dirección de Github es:
+Mi dirección de Github es: https://github.com/claudiaalozano/productor_consumidor.git
 
 En esta tarea existen dos procesos, PRODUCTOR y CONSUMIDOR, donde los dos comparten un buffer con un tamaño finito. El productor va produciendo recursos y almacenandolos para que el consumidor vaya "consumiendo" esos productos uno a uno.
 
