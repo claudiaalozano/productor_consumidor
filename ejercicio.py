@@ -35,3 +35,31 @@ class Productor(threading.Thread):
             lleno.release()
             time.sleep(1)
             items_producidos += 1
+
+#Clase Consumidor
+class Consumidor(threading.Thread):
+        
+        def run(self):
+            global capacidad
+            global in_index
+            global out_index
+            global buffer
+            global mutex
+            global vacio
+            global lleno
+            items_consumidos = 0
+            
+    
+            while True:
+                lleno.acquire()
+                mutex.acquire()
+                item = buffer[out_index]
+
+                
+                out_index = (out_index + 1) % capacidad
+                print("Consumidor", self.name, "consumio:", out_index)
+                
+                mutex.release()
+                vacio.release()
+                time.sleep(2.5)
+                items_consumidos += 1
