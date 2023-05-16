@@ -23,13 +23,13 @@ class Productor(threading.Thread):
         items_producidos = 0
         contador=0
 
-        while True:
+        while items_producidos < 20:
             vacio.acquire()
             mutex.acquire()
             contador += 1
             buffer[in_index] = contador
             in_index = (in_index + 1) % capacidad
-            print("Productor", self.name, "produjo:", in_index)
+            print("Productor produjo:", contador)
             
             mutex.release()
             lleno.release()
@@ -50,14 +50,14 @@ class Consumidor(threading.Thread):
             items_consumidos = 0
             
     
-            while True:
+            while items_consumidos < 20:
                 lleno.acquire()
                 mutex.acquire()
                 item = buffer[out_index]
 
                 
                 out_index = (out_index + 1) % capacidad
-                print("Consumidor", self.name, "consumio:", out_index)
+                print("Consumidor consumio:", item)
                 
                 mutex.release()
                 vacio.release()
